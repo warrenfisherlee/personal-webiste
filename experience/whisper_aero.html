@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatic Balancing of Humanoid Robot Research | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Research Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>Automatic Balancing of Humanoid Robot</h2>
+    <p>
+      The objective of this research is to design and develop a bipedal robot with enhanced balancing 
+      capability. Our goal is to achieve this functionality at the lowest possible cost. As a result,
+      we successfully enabled the robot to automatically maintain balance when external forces are applied,
+      as well as to take two steps and return to an upright standing position independently.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>System Structure</h3>
+    <p>
+      This system integrates sensors, controllers, and simulation tools to achieve real-time balance control 
+      of a bipedal robot. The gyroscope provides orientation data to the STM32 MCU, which performs PI control 
+      and processes feedback from the motor encoders. Control signals are executed to maintain stability, 
+      while a Raspberry Pi handles monitoring and data visualization. Through a web-based interface, motor 
+      torque, motor angle, and robot posture can be displayed and analyzed. Additionally, MATLAB and Gazebo 
+      simulations are used to validate the control strategy before implementation on hardware.
+    </p>
+    <figure>
+      <img src="../images/bipital-robot-system-structure.jpg" 
+           alt="System Structure" 
+           class="project-img zoom-img">
+      <figcaption>System Structure of the humanoid robot</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Mechanical Design</h3>
+    <p>
+      In the initial mechanical design, a relatively high number of degrees of freedom was considered. However, 
+      during balance control, the maximum torque of a single motor proved insufficient to support the knee and 
+      hip joints. To overcome this limitation, the motor placement was revised so that both the hip and knee joints 
+      are actuated by two motors in parallel. This configuration not only reduces the load on each motor but also 
+      increases the joint output torque, enabling the robot to maintain stability under external disturbances and 
+      during larger-amplitude movements. At the same time, cost reduction was a key design consideration. 
+      Instead of purchasing additional motors, the system was optimized to operate with a total of 14 motors, 
+      achieving a balance between performance and economic efficiency.
+    </p>
+    <figure>
+      <img src="../images/bipidal-robot-mechanical-design.jpg" 
+           alt="Mechanical Design" 
+           class="project-img zoom-img">
+      <figcaption>Mechanical design with revised motor placement</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Firmware Design</h3>
+    <p>
+      Designed a custom PCB integrating an STM32 and developed a reusable firmware library for CAN-based motor control. 
+      A CAN transceiver converts the STM32 CAN peripheral’s logic-level TX/RX into differential CANH/CANL signals. 
+      Commands for target position, velocity, and torque are transmitted, while encoder and status feedback are received 
+      in real time. The feedback is decoded and processed by a PI controller to achieve closed-loop control, ensuring accurate, 
+      stable, and robust actuation. In addition, a gyroscope is employed to continuously monitor the robot’s posture, verifying 
+      that it remains in the correct balanced position.
+    </p>
+    <figure>
+      <img src="../images/bipital-robot-PCB-Design.jpg" 
+           alt="PCB Design" 
+           class="project-img zoom-img">
+      <figcaption>Custom PCB design with STM32 and CAN transceiver</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Simulation</h3>
+    <p>
+      A gait trajectory equation was established in MATLAB, and inverse kinematics was applied to simulate joint motions (Fig. 1). 
+      The Zero Moment Point (ZMP) was then verified to remain within the foot support area to ensure balance (Fig. 2). The model was 
+      subsequently implemented in Gazebo for simulation, where PI parameters were tuned to achieve stable control. External forces 
+      were applied in the virtual environment to evaluate and enhance the robot’s disturbance rejection capability (Fig. 3).
+    </p>
+
+    <figure>
+      <img src="../images/bipital-robot-gait.jpg" 
+           alt="Gait trajectory" 
+           class="project-img zoom-img">
+      <figcaption>(Fig. 1) Gait trajectory equation and inverse kinematics simulation</figcaption>
+    </figure>
+
+    <figure>
+      <img src="../images/bipital-robot-zmp.jpg" 
+           alt="ZMP balance check" 
+           class="project-img zoom-img">
+      <figcaption>(Fig. 2) Verification of ZMP within foot support area</figcaption>
+    </figure>
+
+    <figure>
+      <img src="../images/bipital-robot-disturbance-test.jpg" 
+           alt="Disturbance rejection in Gazebo" 
+           class="project-img zoom-img">
+      <figcaption>(Fig. 3) Simulation in Gazebo with disturbance rejection test</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Result Demo Video</h3>
+    <p><a href="https://youtu.be/_Mgv7v-Wu9A" target="_blank">Result Demo Video</a></p>
+  </section>  
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+  </script>
+</body>
+</html>
