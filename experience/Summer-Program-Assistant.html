@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotic Arm Control | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Software Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>Robotic Arm Control</h2>
+    <p>
+      This project focuses on programming and controlling a 4-DOF robotic arm. The workflow begins with the development of a classification 
+      program along with vision and auditory recognition modules, followed by simulation and validation in Rviz, and finally implementation 
+      on the physical robotic arm.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>System Structure</h3>
+    <p>
+      This project employs an OpenCV function to detect the size and position of target objects. Voice commands are captured via a microphone and 
+      converted into text using an API, after which a Python program parses the text to determine the correct destination. A stacking and classification 
+      algorithm is then applied to first arrange objects by size, followed by sequentially moving them to the designated area. Throughout the process, 
+      the classification program continuously controls the motors, issuing the next angle command only after receiving motor feedback. This ensures that 
+      the robot does not move prematurely, thereby maintaining stability and precision.
+    </p>
+    <figure>
+      <img src="../images/arm-system-structure.jpg" 
+           alt="arm-system-structure" 
+           class="project-img zoom-img">
+      <figcaption>Robotic Arm Control System Structure</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Result Demo Video</h3>
+    <p><a href="https://youtu.be/5XVYFa3pyTQ" target="_blank">Result Demo Video</a></p>
+  </section> 
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

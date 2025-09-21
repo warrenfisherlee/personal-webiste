@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCU Programming | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Firmware Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>MCU Programming</h2>
+    <p>
+      With the MCU (such as Arduino or STM32) as the central control unit, the system drives motors and acquires sensor data to enable task-specific 
+      mechanism operations. Communication protocols are further implemented to integrate with software, ensuring seamless coordination and efficient 
+      system integration.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>Control System of 2022 TEL Robot Combat</h3>
+    <p>
+      The system utilizes an STM32 microcontroller to communicate with the software for obtaining target positions. An inverse kinematics algorithm is implemented 
+      to calculate the required motor angles, enabling the robotic arm to precisely reach designated locations. Simultaneously, air pumps and solenoid valves are 
+      controlled to actuate the end-effector for gripping and releasing objects. In addition, motor velocity data is acquired from the software and combined with 
+      encoder feedback, where PI control is applied to ensure accurate distance and speed regulation.
+    </p>
+    <p><a href="https://youtube.com/shorts/j0LxJYWWX1I" target="_blank">Demo Video</a></p>
+  </section>
+
+  <section class="card">
+    <h3>Control System of 2023 Eurobot competition</h3>
+    <p>
+      The system employs an STM32 microcontroller to communicate with the software, obtaining target color sequences and initiating classification. A dedicated classification 
+      program optimizes task execution, while photo-interrupters ensure rotational accuracy and pressure sensors monitor the end-effector’s functionality. Additionally, 
+      infrared sensors verify task completion and report results back to the software. Throughout the operation, data is recorded in real time to facilitate final task 
+      evaluation and performance analysis.
+    </p>
+    <p><a href="https://youtu.be/MCeKEQ8pGv0" target="_blank">Demo Video</a></p>
+  </section>
+
+  <section class="card">
+    <h3>Control System of 2024 Eurobot competition</h3>
+    <p>
+      With the STM32 microcontroller as the central control unit, the system drives a BLDC motor to achieve precise object suction. Task sequences are received through software 
+      communication, enabling accurate motor angle control for reliable execution. An infrared distance sensor is also integrated to further enhance positioning accuracy and 
+      task robustness.
+    </p>
+    <p><a href="https://youtu.be/VNl56QQbn9E" target="_blank">Demo Video</a></p> 
+  </section>
+
+  <section class="card">
+    <h3>Control System of 2025 ASME SPDC competition</h3>
+    <p>
+      V1 :
+        The system employs an Arduino Mega to control motor operations, with a synchronized timer that initiates tasks after a 10-second delay. A color sensor module is integrated to 
+      classify beads of different materials, directing them to the appropriate channels via a rotary mechanism. To address potential friction between beads and the machine’s inner 
+      walls, a vibration motor is incorporated to dislodge stuck beads, ensuring smooth flow and reliable sorting.
+    </p>
+    
+    <p>
+      V2 :
+        The system employs a vibration motor in combination with a servo motor to regulate the falling speed of beads. A micro switch is used to detect arrival at the target point, 
+      upon which the servo motor opens the gate while the vibration motor is simultaneously deactivated, ensuring stable and precise bead delivery.
+    </p>
+    <p><a href="https://youtu.be/zwFxt-2JtX4" target="_blank">V1_Demo Video</a></p>
+    <p><a href="https://youtu.be/JneIOASeMsA" target="_blank">V2_Demo Video</a></p>
+  </section>
+
+  <section class="card">
+    <h3>Control System of 2025 Robotics Dream Camp</h3>
+    <p>
+      The system utilizes a dual ESP32 communication architecture: one ESP32 controls the robot’s chassis and dual-arm movements, while the other is 
+      embedded in the remote controller to read joystick and button inputs, transmitting commands and movement directions in real time for precise operation. 
+      Additionally, a safety sensor is mounted on the robot’s head to terminate program execution if removed, ensuring safe operation.
+    </p>
+    <p><a href="https://youtu.be/mVhekZsofS4" target="_blank">Demo Video</a></p>
+  </section>
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

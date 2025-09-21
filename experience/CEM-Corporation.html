@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant Projects | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Software Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>AI Assistant Projects</h2>
+    <p>
+      These projects showcase two complementary approaches to intelligent assistants:  
+      one built with the Rasa framework for structured, rule-based interactions,  
+      and another powered by LLMs for adaptive, open-ended conversations.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>AI Assistant with Rasa</h3>
+    <p>
+      Built an AI-powered assistant using the Rasa framework, capable of handling 100+ queries 
+      daily with 90% accuracy. Designed a web-based UI that improved adoption rate by 30%. 
+      The assistant can interpret user questions, retrieve relevant information from specific 
+      news websites or Google search results, and present both images and text content directly 
+      on the webpage for easy access.
+    </p>
+    <p><a href="https://youtu.be/m6FbpeEF_VQ" target="_blank">Demo Video</a></p>
+  </section>
+
+  <section class="card">
+    <h3>AI Assistant with LLM Integration</h3>
+    <p>
+      Developed a conversational assistant by integrating large language models (LLMs) with Python, 
+      leveraging APIs for real-time query responses enhanced by custom task automation logic. 
+      Built a database-backed retriever and analysis pipeline to surface relevant context and synthesize 
+      responses via the LLM, improving response relevance by 40% compared to baseline chatbot systems 
+      and reducing employees’ information retrieval time by 50%. The entire system was deployed on the 
+      internal network to maintain confidentiality and prevent external data exposure, while backend data 
+      and user queries were continuously collected to enable iterative model retraining and performance 
+      improvement.
+    </p>
+    <figure>
+      <img src="../images/llm-demo.jpg" 
+           alt="LLM Assistant Demo" 
+           class="project-img zoom-img">
+      <figcaption>Demonstration of the LLM-powered assistant</figcaption>
+    </figure>
+  </section>
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

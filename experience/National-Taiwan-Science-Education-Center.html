@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task-scheduling-systems | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Software Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>Task-scheduling-systems</h2>
+    <p>
+      The Task-Scheduling System was implemented on the Eurobot 2024 competition robot. Its objective is to 
+      achieve the maximum possible score within 100 seconds while ensuring the robot returns to its designated 
+      position before the time limit. The system also incorporates adversarial awareness, enabling it to evaluate 
+      whether the opponent’s robot interferes with task execution. Based on this, it generates the optimal path 
+      planning strategy to maximize efficiency and secure victory.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>The Decision Tree</h3>
+    <p>
+      Implement a Python-based decision tree that fuses multi-sensor feedback and performs opponent state estimation 
+      (position and velocity) to dynamically select optimal task targets and paths. A time stop-loss mechanism is incorporated 
+      to ensure the robot does the right action at the right time, preventing overtime penalties and minimizing half-completed, 
+      non-scoring tasks—ultimately improving decision robustness and scoring efficiency.
+    </p>
+    <p><a href="https://youtu.be/jhslzk8uIgU" target="_blank">Result Demo Video</a></p>
+  </section>
+
+  <section class="card">
+    <h3>User Interface</h3>
+    <p>
+      We integrated Groot to visualize our decision tree with a UI interface. This allows us to modify task goals or add new 
+      constraints more efficiently, while also making it easier to identify and debug issues within the system, thereby improving 
+      both maintainability and development speed.
+    </p>
+    <figure>
+      <img src="../images/user-interface.jpg" 
+           alt="User Interface" 
+           class="project-img zoom-img">
+      <figcaption>User interface for task decision tree visualization</figcaption>
+    </figure>
+  </section>
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    // 可用 ESC 鍵關閉
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

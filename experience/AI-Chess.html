@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 ASME SPDC Mechanisms | Chen-Yu Chiang</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Mechanical Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>2025 ASME SPDC Mechanisms</h2>
+    <p>
+      I collaborated with one teammate to design and build a device for the 2025 ASME SPDC competition that automatically classifies balls of 
+      different sizes and materials, delivering them quickly and accurately to six designated packaging stations.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>V1 Mechanisms (Sort By Color)</h3>
+    <p>
+      A funnel is placed at the top of the machine to separate large and small balls, guiding them through different channels into the color 
+      recognition module. Since the module performs best in darkness, a cover is added above the funnel to minimize light interference. After 
+      classification, the balls pass through a three-way conduit to their designated color and size compartments. At the final delivery point, 
+      a gate is opened to allow the balls to roll out smoothly.
+    </p>
+    <figure>
+      <img src="../images/V1-Mechanisms.jpg" 
+           alt="V1-Mechanisms" 
+           class="project-img zoom-img">
+      <figcaption>V1 Mechanisms</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>V2 Mechanisms (Sort By Rebound Height)</h3>
+    <p>
+      A funnel is mounted at the top of the machine to separate large and small balls, which then drop freely onto a metal plate. The rebound height 
+      is used to distinguish and classify their material before guiding them into the corresponding channels. Upon reaching the target point, a gate 
+      is opened to release the balls smoothly from the machine.
+    </p>
+    <figure>
+      <img src="../images/V2-Mechanisms.jpg" 
+           alt="V2-Mechanisms" 
+           class="project-img zoom-img">
+      <figcaption>V2 Mechanisms</figcaption>
+    </figure>
+  </section>
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

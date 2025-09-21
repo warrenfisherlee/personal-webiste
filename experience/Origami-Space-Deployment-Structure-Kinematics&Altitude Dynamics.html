@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Origami Space Deployment Structure Kinematics & Altitude Dynamics.html | Warren Fisher Lee</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .zoom-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .zoom-img:hover {
+      transform: scale(1.03);
+    }
+
+    .img-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .img-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    figure {
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">Chen-Yu Chiang (Mechanical Design Portfolio)</h1>
+      <nav>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="card">
+    <h2>2022 TEL Robot Combat Mechanisms</h2>
+    <p>
+      In the 2022 TEL Robot Combat, which combined the Smart Track and Treasure Battle Arena, my teammates and I co-designed the robot’s 
+      mechanism to balance stability and flexibility, enabling efficient responsiveness and precise performance in both autonomous navigation 
+      and manual control.
+    </p>
+  </section>
+
+  <!-- Project Cards -->
+  <section class="card">
+    <h3>SCARA Arm</h3>
+    <p>
+      The SCARA arm offers high precision and a wide operational range, with vertical motion driven by a large-pitch ball screw to improve 
+      speed. To enable stacking of three blocks, sufficient vertical travel is required; due to structural constraints, the end-effector 
+      employs a T-shaped suction cup assembly with three different lengths. The longer cup handles smaller objects, while the shortest cup 
+      is used for stacking the third block, ensuring both accuracy and space efficiency.
+    </p>
+    <figure>
+      <img src="../images/TEL-robot.jpg" 
+           alt="TEL-robot" 
+           class="project-img zoom-img">
+      <figcaption>SCARA Arm</figcaption>
+    </figure>
+  </section>
+
+  <section class="card">
+    <h3>Mecanum Wheel Chassis</h3>
+    <p>
+      The mecanum wheel chassis, powered by four DC motors, enables omnidirectional mobility. In the first half of the competition, it allows 
+      rapid lateral movement, particularly advantageous in Stage 3 when maneuvering down a slope within limited space. In the second half, its 
+      high maneuverability enables the robot to easily avoid obstacles and quickly align its body for object gripping, significantly improving 
+      overall efficiency.
+    </p>
+    <figure>
+      <img src="../images/TEL-wheel.jpg" 
+           alt="TEL-wheel" 
+           class="project-img zoom-img">
+      <figcaption>Mecanum Wheel Chassis</figcaption>
+    </figure>
+  </section>
+
+  <!-- Navigation -->
+  <section class="card">
+    <p><a href="../index.html">← Back to Home</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Chen-Yu Chiang | Portfolio</p>
+  </footer>
+
+  <!-- Overlay for zoom images -->
+  <div class="img-overlay" id="imgOverlay">
+    <img src="" alt="full view">
+  </div>
+
+  <!-- JS for zoom effect -->
+  <script>
+    const overlay = document.getElementById("imgOverlay");
+    const overlayImg = overlay.querySelector("img");
+
+    document.querySelectorAll(".zoom-img").forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
